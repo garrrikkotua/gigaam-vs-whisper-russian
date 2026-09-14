@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this archived benchmark, please cite it and the original Golos dataset."
+title: "GigaAM v3 RNNT vs Whisper large-v3 on Russian Golos Crowd: a 200-utterance archived benchmark"
+type: dataset
+authors:
+  - family-names: Kotua
+    given-names: Igor
+version: 1.0.0
+date-released: 2026-09-14
+repository-code: "https://github.com/garrrikkotua/gigaam-vs-whisper-russian"
+url: "https://transkriba.ru/stati/gigaam-protiv-whisper"
+keywords:
+  - Russian ASR
+  - GigaAM
+  - Whisper
+  - word error rate
+  - speech recognition
+references:
+  - type: article
+    title: "Golos: Russian Dataset for Speech Research"
+    authors:
+      - family-names: Karpov
+        given-names: Nikolay
+      - family-names: Denisenko
+        given-names: Alexander
+      - family-names: Minkin
+        given-names: Fedor
+    year: 2021
+    doi: 10.48550/arXiv.2106.10161
+    url: "https://arxiv.org/abs/2106.10161"
