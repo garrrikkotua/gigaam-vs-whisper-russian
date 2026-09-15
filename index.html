@@ -64,9 +64,14 @@
     a { color:var(--accent); text-underline-offset:3px; }
     code { background:var(--soft); border-radius:5px; padding:2px 5px; }
     pre { overflow-x:auto; padding:16px; border-radius:10px; background:#111827; color:#f8fafc; }
+    pre code { padding:0; color:inherit; background:transparent; }
     ul { padding-left:22px; }
     footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
-    @media (max-width:520px) { main { padding-top:36px; } }
+    @media (max-width:520px) {
+      main { padding-top:36px; }
+      table { min-width:0; font-size:.86rem; }
+      th,td { padding:10px 7px; }
+    }
   </style>
 </head>
 <body>
