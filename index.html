@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Russian ASR benchmark: GigaAM vs Whisper</title>
+  <meta name="description" content="An auditable comparison of GigaAM v3 RNNT and Whisper large-v3 on the same 200 Russian Golos Crowd utterances, with results and a verifier.">
+  <meta name="robots" content="index, follow, max-snippet:-1">
+  <link rel="canonical" href="https://garrrikkotua.github.io/gigaam-vs-whisper-russian/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Russian ASR benchmark: GigaAM vs Whisper">
+  <meta property="og:description" content="Archived outputs, corpus WER, limitations, checksums, and a dependency-free verifier for a fixed 200-utterance Russian sample.">
+  <meta property="og:url" content="https://garrrikkotua.github.io/gigaam-vs-whisper-russian/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "GigaAM v3 RNNT vs Whisper large-v3 on Russian Golos Crowd",
+    "description": "Archived hypotheses and references for an auditable corpus-WER comparison on the same 200 short Russian Golos Crowd utterances.",
+    "url": "https://garrrikkotua.github.io/gigaam-vs-whisper-russian/",
+    "sameAs": [
+      "https://github.com/garrrikkotua/gigaam-vs-whisper-russian",
+      "https://transkriba.ru/stati/gigaam-protiv-whisper",
+      "https://archive.softwareheritage.org/swh:1:snp:8c807600a62955a2d89cc99c72ca1a968ec37acb/"
+    ],
+    "identifier": "https://github.com/garrrikkotua/gigaam-vs-whisper-russian/releases/tag/v1.0.0",
+    "version": "1.0.0",
+    "datePublished": "2026-09-14",
+    "creator": {"@type": "Person", "name": "Igor Kotua"},
+    "isAccessibleForFree": true,
+    "inLanguage": ["en", "ru"],
+    "measurementTechnique": "Corpus word error rate (WER)",
+    "keywords": ["Russian ASR", "GigaAM", "Whisper", "Golos", "word error rate"],
+    "isBasedOn": [
+      "https://github.com/sberdevices/golos",
+      "https://huggingface.co/datasets/bond005/sberdevices_golos_10h_crowd"
+    ],
+    "license": "https://github.com/garrrikkotua/gigaam-vs-whisper-russian/releases/download/v1.0.0/license.pdf",
+    "distribution": {
+      "@type": "DataDownload",
+      "encodingFormat": "application/json",
+      "contentUrl": "https://garrrikkotua.github.io/gigaam-vs-whisper-russian/results.json"
+    }
+  }
+  </script>
+  <style>
+    :root { color-scheme: light; --ink:#172033; --muted:#556176; --line:#d9e0ea; --accent:#3157d5; --soft:#f4f7fb; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--ink); background:#fff; font:16px/1.62 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    main { width:min(820px,calc(100% - 32px)); margin:0 auto; padding:56px 0 72px; }
+    h1 { margin:0 0 14px; font-size:clamp(2rem,6vw,3.5rem); line-height:1.08; letter-spacing:-.035em; }
+    h2 { margin:42px 0 12px; font-size:1.55rem; line-height:1.25; }
+    p { margin:10px 0; }
+    .lede { max-width:720px; color:var(--muted); font-size:1.18rem; }
+    .badges { display:flex; flex-wrap:wrap; gap:8px; margin:24px 0 32px; }
+    .badge { padding:5px 10px; border:1px solid var(--line); border-radius:999px; background:var(--soft); font-size:.88rem; }
+    .table-wrap { overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line); border-radius:12px; }
+    table { width:100%; border-collapse:collapse; min-width:520px; }
+    th,td { padding:13px 15px; text-align:left; border-bottom:1px solid var(--line); }
+    th { background:var(--soft); }
+    tr:last-child td { border-bottom:0; }
+    .links { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin:22px 0; }
+    .links a { display:block; padding:13px 15px; border:1px solid var(--line); border-radius:10px; text-decoration:none; }
+    a { color:var(--accent); text-underline-offset:3px; }
+    code { background:var(--soft); border-radius:5px; padding:2px 5px; }
+    pre { overflow-x:auto; padding:16px; border-radius:10px; background:#111827; color:#f8fafc; }
+    ul { padding-left:22px; }
+    footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
+    @media (max-width:520px) { main { padding-top:36px; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>GigaAM vs Whisper on Russian speech</h1>
+  <p class="lede">A compact, inspectable archive of two model outputs on the same 200 short utterances from the Golos Crowd test split. The package includes references, hypotheses, checksums, one unmodified audio example, and a verifier that needs only Python 3.</p>
+
+  <div class="badges" aria-label="Benchmark scope">
+    <span class="badge">Version 1.0.0</span>
+    <span class="badge">200 utterances</span>
+    <span class="badge">823.85 seconds</span>
+    <span class="badge">1,001 reference words</span>
+  </div>
+
+  <h2>Archived result</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Model</th><th>Word errors</th><th>Reference words</th><th>Corpus WER</th></tr></thead>
+      <tbody>
+        <tr><td>GigaAM v3 RNNT</td><td>15</td><td>1,001</td><td><strong>1.50%</strong></td></tr>
+        <tr><td>Whisper large-v3</td><td>128</td><td>1,001</td><td><strong>12.79%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>These values describe this fixed sample and normalization. They are not a general ranking of either model and do not measure the accuracy of a hosted transcription service.</p>
+
+  <h2>Inspect and verify</h2>
+  <div class="links">
+    <a href="results.json"><strong>Results JSON</strong><br>References, hypotheses, aggregates, and audio hashes</a>
+    <a href="verify.py"><strong>Python verifier</strong><br>Recalculate edit distance without third-party packages</a>
+    <a href="METHODS.html"><strong>Methods and limits</strong><br>Selection, normalization, model identifiers, and caveats</a>
+    <a href="CITATION.cff"><strong>Citation metadata</strong><br>Machine-readable CFF record for version 1.0.0</a>
+  </div>
+  <pre><code>python3 verify.py
+shasum -a 256 -c CHECKSUMS.sha256</code></pre>
+  <p>The verifier scores the stored normalized strings. It does not download models or rerun inference. The archived reports identify mutable model names rather than immutable weight hashes, so bit-for-bit inference reproduction is not guaranteed.</p>
+
+  <h2>What the sample can and cannot answer</h2>
+  <p>Both archived reports use the same deterministic first 200 rows from a local Golos Crowd test manifest, the same word normalization, and corpus WER: total substitutions, insertions, and deletions divided by total reference words.</p>
+  <ul>
+    <li>The short Crowd phrases do not represent interviews, meetings, lectures, every accent, or every acoustic condition.</li>
+    <li>Training-data overlap was not investigated.</li>
+    <li>WER does not measure punctuation, speaker labels, formatting, or manual editing time.</li>
+    <li>The archived runtime observations were not a controlled speed benchmark.</li>
+    <li>Only the first audio clip is redistributed; the manifest retains SHA-256 hashes for all 200 clips.</li>
+  </ul>
+
+  <h2>Sources, report, and permanent snapshot</h2>
+  <p>Golos was created by Alexander Denisenko, Angelina Kovalenko, Fedor Minkin, and Nikolay Karpov. This sample came from the <a href="https://huggingface.co/datasets/bond005/sberdevices_golos_10h_crowd">Hugging Face mirror</a> of the <a href="https://github.com/sberdevices/golos">SberDevices Golos corpus</a>. Review <a href="license.pdf">the original data licence</a> and <a href="NOTICE.html">the file-level notices</a> before redistribution.</p>
+  <p>The <a href="https://transkriba.ru/stati/gigaam-protiv-whisper">full Russian benchmark report</a> adds an audio player and practical interpretation. The source package remains available in the <a href="https://github.com/garrrikkotua/gigaam-vs-whisper-russian">public GitHub repository</a>, the <a href="https://github.com/garrrikkotua/gigaam-vs-whisper-russian/releases/tag/v1.0.0">immutable v1.0.0 release</a>, and a <a href="https://archive.softwareheritage.org/swh:1:snp:8c807600a62955a2d89cc99c72ca1a968ec37acb/">Software Heritage snapshot</a>.</p>
+
+  <h2 lang="ru">Кратко по-русски</h2>
+  <p lang="ru">Это открытый архив сравнения GigaAM v3 RNNT и Whisper large-v3 на одинаковых 200 коротких записях Golos Crowd. Скрипт <code>verify.py</code> заново считает WER по сохранённым эталонам и гипотезам. Он проверяет арифметику, но не запускает модели. Подробная методика и ограничения перечислены выше и в файле METHODS.</p>
+
+  <footer>Published from the public benchmark repository. Version 1.0.0 · 14 September 2026.</footer>
+</main>
+</body>
+</html>

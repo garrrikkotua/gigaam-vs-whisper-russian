@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://garrrikkotua.github.io/gigaam-vs-whisper-russian/sitemap.xml
